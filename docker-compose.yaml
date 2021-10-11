@@ -9,3 +9,37 @@ services:
             - .:/app
         ports:
             - 8000:8000
+        depends_on: 
+            - mysql
+
+    queue:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        command: 'php artisan queue:work'
+        depends_on: 
+            - mysql        
+
+    mysql:
+        platform: linux/x86_64
+        image: mysql:8.0
+        environment: 
+          MYSQL_DATABASE: "${DB_DATABASE}"
+          MYSQL_USER: "${DB_USERNAME}"
+          MYSQL_PASSWORD: "${DB_PASSWORD}"
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        volumes:
+            - ./storage/dbdata:/var/lib/mysql
+        ports:
+            - 3306:3306
+
+    phpmyadmin:
+      depends_on:
+        - mysql
+      image: phpmyadmin/phpmyadmin
+      restart: always
+      ports:
+        - 8090:80
+      environment:
+        PMA_HOST: mysql
+        MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
