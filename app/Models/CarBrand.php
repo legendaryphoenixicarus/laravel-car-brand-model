@@ -10,6 +10,13 @@ class CarBrand extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'car_brand_id'];
+
+    /**
      * Get the carmodels for the blog post.
      */
     public function carmodels()

@@ -18,10 +18,10 @@ class CreateCarModelsTable extends Migration
 
             // base fields
             $table->string('name');
-            $table->unsignedInteger('car_brand_id');
+            $table->unsignedBigInteger('brand_id');
 
             // foreign constraint
-            $table->foreign('car_brand_id')->references('id')->on('car_brands')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('car_brands')->onDelete('cascade');
 
             $table->timestamps();
         });

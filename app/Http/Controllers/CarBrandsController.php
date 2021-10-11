@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CarBrand;
 
 class CarBrandsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,9 @@ class CarBrandsController extends Controller
      */
     public function index()
     {
-        //
+        $car_brands = CarBrand::all();
+
+        return view('car_brands.index')->with(['car_brands' => $car_brands]);
     }
 
     /**
@@ -23,7 +36,7 @@ class CarBrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('car_brands.create');
     }
 
     /**
@@ -34,18 +47,9 @@ class CarBrandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        CarBrand::create($request->input());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('car_brands.index');
     }
 
     /**
@@ -56,7 +60,7 @@ class CarBrandsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('car_brands.edit')->with('car_brand', CarBrand::find($id));
     }
 
     /**
@@ -68,7 +72,13 @@ class CarBrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car_brand = CarBrand::find($id);
+
+        $car_brand->fill($request->all());
+
+        $car_brand->save();
+
+        return redirect()->route('car_brands.index');
     }
 
     /**
@@ -79,6 +89,8 @@ class CarBrandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CarBrand::destroy($id);
+
+        return redirect()->route('car_brands.index');
     }
 }
