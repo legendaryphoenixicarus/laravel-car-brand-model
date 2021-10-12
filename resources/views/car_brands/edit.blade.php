@@ -15,7 +15,7 @@
                             <div class="form-group">
                                 <label for="name" class="col-6 control-label">Name: </label>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" value="{{ $car_brand->name }}" class="form-control" required>
+                                    <input type="text" name="name" value="{{ $car_brand->name }}" class="form-control" focus required>
                                 </div>
                             </div>
                             <div class="col-12">

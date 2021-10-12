@@ -26,7 +26,7 @@ class CarBrandsController extends Controller
     {
         $car_brands = CarBrand::all();
 
-        return view('car_brands.index')->with(['car_brands' => $car_brands]);
+        return view('car_brands.index')->with(compact('car_brands'));
     }
 
     /**

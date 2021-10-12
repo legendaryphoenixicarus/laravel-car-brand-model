@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CarModel;
+use App\Models\CarBrand;
 
 class CarModelsController extends Controller
 {
@@ -23,7 +25,9 @@ class CarModelsController extends Controller
      */
     public function index()
     {
-        //
+        $car_models = CarModel::with('car_model')->get();
+
+        return view('car_models.index')->with(compact('car_models'));
     }
 
     /**
@@ -33,7 +37,9 @@ class CarModelsController extends Controller
      */
     public function create()
     {
-        //
+        $brands = CarBrand::all();
+
+        return view('car_models.create')->with(compact('brands'));
     }
 
     /**
@@ -44,18 +50,9 @@ class CarModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        CarModel::create($request->input());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('car_models.index');
     }
 
     /**
@@ -66,7 +63,11 @@ class CarModelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car_model = CarModel::with('car_brand')->find($id);
+
+        $brands = CarBrand::all();
+
+        return view('car_models.edit')->with(compact('car_model', 'brands'));
     }
 
     /**
@@ -78,7 +79,13 @@ class CarModelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car_model = CarModel::find($id);
+
+        $car_model->fill($request->all());
+
+        $car_model->save();
+
+        return redirect()->route('car_models.index');
     }
 
     /**
@@ -89,6 +96,8 @@ class CarModelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CarModel::destroy($id);
+
+        return redirect()->route('car_models.index');
     }
 }

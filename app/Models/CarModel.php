@@ -19,7 +19,7 @@ class CarModel extends Model
     /**
      * Get the carbrand that owns the comment.
      */
-    public function carbrand()
+    public function car_brand()
     {
         return $this->belongsTo(CarBrand::class);
     }
