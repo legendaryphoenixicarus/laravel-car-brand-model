@@ -25,7 +25,7 @@ class CarModelsController extends Controller
      */
     public function index()
     {
-        $car_models = CarModel::with('car_model')->get();
+        $car_models = CarModel::with('car_brand')->get();
 
         return view('car_models.index')->with(compact('car_models'));
     }

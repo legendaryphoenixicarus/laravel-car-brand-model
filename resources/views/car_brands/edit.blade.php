@@ -12,14 +12,16 @@
                         <form action="{{ url('/car_brands/' . $car_brand->id) }}" method="post">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="name" class="col-6 control-label">Name: </label>
-                                <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label text-right">Name: </label>
+                                <div class="col-6">
                                     <input type="text" name="name" value="{{ $car_brand->name }}" class="form-control" focus required>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            <div class="row">
+                                <div class="col-md-10">    
+                                    <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -31,7 +31,7 @@ Route::put('/car_brands/{id}', [App\Http\Controllers\CarBrandsController::class,
 Route::delete('/car_brands/{id}', [App\Http\Controllers\CarBrandsController::class, 'destroy'])->name('car_brands.destroy');
 
 Route::get('/car_models', [App\Http\Controllers\CarModelsController::class, 'index'])->name('car_models.index');
-Route::get('/car_models/create', [App\Http\Controllers\CarBrandsController::class, 'create'])->name('car_models.create');
+Route::get('/car_models/create', [App\Http\Controllers\CarModelsController::class, 'create'])->name('car_models.create');
 Route::post('/car_models', [App\Http\Controllers\CarModelsController::class, 'store'])->name('car_models.store');
 Route::get('/car_models/{id}', [App\Http\Controllers\CarModelsController::class, 'edit'])->name('car_models.edit');
 Route::put('/car_models/{id}', [App\Http\Controllers\CarModelsController::class, 'update'])->name('car_modelds.update');

@@ -14,13 +14,13 @@ class CarModel extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'brand_id'];
 
     /**
      * Get the carbrand that owns the comment.
      */
     public function car_brand()
     {
-        return $this->belongsTo(CarBrand::class);
+        return $this->belongsTo(CarBrand::class, 'brand_id');
     }
 }

@@ -14,7 +14,7 @@ class CarBrand extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'car_brand_id'];
+    protected $fillable = ['name'];
 
     /**
      * Get the carmodels for the blog post.
